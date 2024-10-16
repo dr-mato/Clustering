@@ -1,0 +1,51 @@
+This Python program demonstrates both K-means and K-medoids clustering algorithms on a selected dataset.
+
+Functions:
+1. initialize_centroids(vertices, num_clusters): Randomly selects initial centroids for clustering.
+2. assign_clusters(vertices, centroids): Assigns each song to the nearest centroid or medoid based on Euclidean distance.
+3. update_centroids(clusters): Updates the centroids in K-means by calculating the average position of songs in each cluster.
+4. update_medoids(clusters): Updates the medoids in K-medoids by choosing the song in each cluster that minimizes the total distance to other songs in the cluster.
+5. iterate_clustering(vertices, num_clusters, iterations, clustering_type="k-means"): Iterates over clustering using other methods, which are previously defined.
+6. plot_clusters(final_clusters, title, ax, xlabel, ylabel): Visualizes clusters in scatter plots.
+7. intra_cluster_variance(clusters, centers): Measures the average squared distance between points and their respective centroids or medoids.  
+8. print_final_centers(centers, name): Prints the final centroids or medoids of each cluster.
+9. matrix_norm_distance(matrix1, matrix2, norm_type='fro'): Calculates matrix norm of a difference between two matrices
+10. assign_matrix_clusters(matrices, centroids, norm_type='fro'): Does the same as assign_clusters, but for matrices
+11. update_matrix_centroids(clusters): Does the same as update_centroids, but for matrices
+12. update_matrix_medoids(clusters, old_medoids, norm_type='fro'): Does the same as update_medoids, but for matrices
+13. iterate_matrix_clustering(matrices, num_clusters, iterations, clustering_type="k-means", norm_type='fro'): Does the same as iterate_clustering, but for matrices
+14. plot_clusters_matrices(matrices, final_clusters, centers): Visualizes clusters for matrices in scatter plots.
+15. intra_cluster_variance_matrices(matrices, labels, centers): Measures the average squared distance between matrix points and their respective centroids or medoids.
+
+Clustering Process:
+- K-means and K-medoids are run separately on the dataset.
+- K-means and K-medoids update centers for 50 iteration.
+- The final clusters for both algorithms are visualized using scatter plots. Each cluster is colored.
+
+Output:
+- Scatter plots: for K-means clustering and for K-medoids clustering.
+- The centroids and medoids are printed, representing the central points of the clusters.
+- Based on the answer from intra_cluster_variance we decide which algorithm is better or if they both work.
+
+Several Examples:
+K-means Intra-Cluster Variance: 2558.7833756180066, K-medoids Intra-Cluster Variance: 5085.901639344263
+K-means Intra-Cluster Variance (X): 0.03605461205175682, K-medoids Intra-Cluster Variance (X): 0.046298187009385074
+K-means Intra-Cluster Variance (Y): 0.7709746845822982, K-medoids Intra-Cluster Variance (Y): 1.4703375927871645
+K-means Intra-Cluster Variance (Matrices A): 0.5830021703822347, K-medoids Intra-Cluster Variance (Matrices A): 0.8003919737191658
+K-means Intra-Cluster Variance (Matrices B): 19.25445926223059, K-medoids Intra-Cluster Variance (Matrices B): 24.12899511177176
+
+K-means Intra-Cluster Variance: 2558.783375618007, K-medoids Intra-Cluster Variance: 3376.0163934426228
+K-means Intra-Cluster Variance (X): 0.04596495111527054, K-medoids Intra-Cluster Variance (X): 0.04822019061323068
+K-means Intra-Cluster Variance (Y): 1.6544652443728427, K-medoids Intra-Cluster Variance (Y): 5.524221757720017
+K-means Intra-Cluster Variance (Matrices A): 0.5473889431554815, K-medoids Intra-Cluster Variance (Matrices A): 0.7087208289312198
+K-means Intra-Cluster Variance (Matrices B): 20.378294888424858, K-medoids Intra-Cluster Variance (Matrices B): 40.69978917692752
+
+K-means Intra-Cluster Variance: 2558.783375618007, K-medoids Intra-Cluster Variance: 2705.5081967213114
+K-means Intra-Cluster Variance (X): 0.041068947357842334, K-medoids Intra-Cluster Variance (X): 0.046173832181374885
+K-means Intra-Cluster Variance (Y): 1.3057661708299912, K-medoids Intra-Cluster Variance (Y): 4.858804682251833
+K-means Intra-Cluster Variance (Matrices A): 0.5578428658890207, K-medoids Intra-Cluster Variance (Matrices A): 0.7046956388675965
+K-means Intra-Cluster Variance (Matrices B): 24.01710702045623, K-medoids Intra-Cluster Variance (Matrices B): 28.631810418835535
+
+Based on these for real world problem k-means clustering was getting better results.
+Then we checked with random numbers and k-means and k-medoids for vectors gave similar results, but in the case when we had many vectors close together and then few scattered around k-means gave better results.
+Then we did k-means and k-medoids clustering for matrices and in dataset A they gave similar results, while k-means was again better for dataset B.
